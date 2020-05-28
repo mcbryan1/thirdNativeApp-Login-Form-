@@ -7,16 +7,14 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { connect } from "react-redux";
 
-export default class Login extends Component {
+class Login extends Component {
   render() {
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View style={styles.login_component}>
-          <View style={styles.login__container}>
-            <Text style={styles.login__container__text}>Log in</Text>
-          </View>
-
           {/* Inputs */}
           <View style={styles.input__container}>
             <TextInput
@@ -36,7 +34,12 @@ export default class Login extends Component {
 
           {/* Button */}
           <View style={styles.button__container}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate("PetList");
+              }}
+            >
               <Text style={styles.button__text}>Log in</Text>
             </TouchableOpacity>
           </View>
@@ -46,7 +49,13 @@ export default class Login extends Component {
             <Text style={styles.account__container__text1}>
               Don't have account?
             </Text>
-            <Text style={styles.account__container__text2}>Sign up</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("SignUp");
+              }}
+            >
+              <Text style={styles.account__container__text2}>Sign up</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -58,7 +67,7 @@ const styles = StyleSheet.create({
   login_component: {
     flexDirection: "column",
     marginVertical: 100,
-    marginHorizontal: 50,
+    marginHorizontal: 30,
   },
   login__container: {
     marginBottom: 50,
@@ -66,16 +75,16 @@ const styles = StyleSheet.create({
   login__container__text: {
     fontSize: 35,
     fontWeight: "600",
-    color: "#009496",
+    color: "#205878",
   },
   input__container: {
     marginBottom: 50,
   },
   input__field: {
     borderBottomWidth: 2,
-    borderBottomColor: "#009496",
+    borderBottomColor: "#205878",
     paddingBottom: 5,
-    marginBottom: 15,
+    marginBottom: 35,
     fontSize: 20,
   },
   forgot__password: {
@@ -83,17 +92,18 @@ const styles = StyleSheet.create({
     color: "#000296",
   },
   button__container: {
-    marginBottom: 50,
+    marginBottom: 80,
   },
   button: {
-    backgroundColor: "#009496",
+    backgroundColor: "#205878",
     alignItems: "center",
-    borderRadius: 50,
+    borderRadius: 5,
   },
   button__text: {
-    padding: 15,
+    padding: 10,
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
   account__container: {
     flexDirection: "row",
@@ -101,9 +111,12 @@ const styles = StyleSheet.create({
   account__container__text2: {
     flex: 2,
     alignSelf: "flex-end",
-    color: "#009496",
+    color: "#205878",
+    fontWeight: "bold",
   },
   account__container__text1: {
     flex: 8,
   },
 });
+
+export default connect({}, {})(Login);

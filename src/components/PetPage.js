@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 15,
     flexDirection: "row",
-    marginVertical: 15,
+    marginVertical: 10,
   },
   image: {
     height: 160,

@@ -7,15 +7,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { connect } from "react-redux";
 
-export default function Signup() {
+function Signup({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={styles.signup__container}>
-          <Text style={styles.signup__container__text}>Sign Up</Text>
-        </View>
-
         {/* Inputs */}
         <View style={styles.input__container}>
           <TextInput
@@ -55,9 +52,13 @@ export default function Signup() {
         {/* !Account */}
         <View style={styles.account__container}>
           <Text style={styles.account__container__text1}>
-            You already have account?
+            Already have account?
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
+          >
             <Text style={styles.account__container__text2}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -69,48 +70,53 @@ export default function Signup() {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 30,
-    marginVertical: 100,
+    marginVertical: 40,
   },
   signup__container: {
     marginBottom: 20,
   },
   signup__container__text: {
     fontSize: 35,
-    color: "#009496",
+    color: "#205878",
   },
   input__container: {
-    marginBottom: 50,
+    marginVertical: 50,
   },
   input__field: {
     fontSize: 20,
     borderBottomWidth: 2,
     height: 60,
-    borderBottomColor: "#009496",
+    borderBottomColor: "#205878",
   },
   button__container: {
-    marginBottom: 50,
+    marginVertical: 50,
   },
   button: {
-    backgroundColor: "#009496",
-    borderRadius: 10,
+    backgroundColor: "#205878",
+    borderRadius: 5,
   },
   button__text: {
-    fontSize: 30,
+    fontSize: 20,
     color: "white",
     padding: 10,
     alignSelf: "center",
+    fontWeight: "bold",
   },
   account__container: {
     flexDirection: "row",
-    marginHorizontal: 10,
     fontSize: 25,
+    justifyContent: "space-between",
   },
   account__container__text2: {
     marginLeft: 10,
-    color: "#009496",
+    color: "#205878",
     fontSize: 17,
+    fontWeight: "bold",
   },
   account__container__text1: {
     fontSize: 17,
   },
 });
+
+
+export default connect({}, {})(Signup);
